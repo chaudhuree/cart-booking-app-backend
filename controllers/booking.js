@@ -2,13 +2,24 @@ const prisma = require('../prisma/index');
 
 // add booking
 exports.addBooking = async (req, res) => {
+
   const { carId, userId, from, to, totalHours, totalAmount, transactionId, driverRequired } = req.body;
+  // check user total booking amount
+  const bookedByUser = await prisma.booking.count({
+    where: {
+      userId
+    }
+  });
+  let amountToPay = totalAmount;
+  if (bookedByUser <= 3) {
+    amountToPay = totalAmount - (totalAmount * 0.3);
+  }
   const booking = await prisma.booking.create({
     data: {
       carId,
       userId,
       totalHours,
-      totalAmount,
+      totalAmount: amountToPay,
       transactionId,
       driverRequired,
       BookedTimeSlot: {
