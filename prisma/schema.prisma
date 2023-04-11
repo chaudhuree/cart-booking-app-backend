@@ -54,4 +54,10 @@ model Booking {
   // bookedTimeSlots   BookedTimeSlot? @relation("BookedSlot", fields: [bookedTimeSlotId], references: [id])
   // bookedTimeSlotId String?         @unique @db.ObjectId
   BookedTimeSlot BookedTimeSlot? @relation("BookedSlot")
+  totalHours     Int?
+  totalAmount    Int?
+  transactionId  String?
+  driverRequired Boolean?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
 }

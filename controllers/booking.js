@@ -2,11 +2,15 @@ const prisma = require('../prisma/index');
 
 // add booking
 exports.addBooking = async (req, res) => {
-  const { carId, userId, from, to } = req.body;
+  const { carId, userId, from, to, totalHours, totalAmount, transactionId, driverRequired } = req.body;
   const booking = await prisma.booking.create({
     data: {
       carId,
       userId,
+      totalHours,
+      totalAmount,
+      transactionId,
+      driverRequired,
       BookedTimeSlot: {
         create: {
           from,
@@ -20,6 +24,7 @@ exports.addBooking = async (req, res) => {
       BookedTimeSlot: true
     }
   });
+  // after creating the car update the car bookedTimeSlots array with the new booking
   await prisma.car.update({
     where: {
       id: carId
