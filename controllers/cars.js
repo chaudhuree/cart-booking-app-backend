@@ -17,7 +17,12 @@ exports.addCar = async (req, res) => {
 
 // get all cars
 exports.getAllCars = async (req, res) => {
-  const cars = await prisma.car.findMany();
+  const cars = await prisma.car.findMany({
+    include: {
+      bookedTimeSlots: true,
+      Booking: true
+    }
+  });
   res.json(cars);
 }
 

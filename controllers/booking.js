@@ -43,7 +43,9 @@ exports.addBooking = async (req, res) => {
 exports.getAllBookings = async (req, res) => {
   const bookings = await prisma.booking.findMany({
     include: {
-      car: true
+      car: true,
+      user: true,
+      BookedTimeSlot: true
     }
   });
   res.json(bookings);

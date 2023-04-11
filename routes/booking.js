@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { addBooking, getAllBookings, bookedTimeSlots } = require('../controllers/booking');
+const { addBooking, getAllBookings } = require('../controllers/booking');
 
 router.post('/addbooking', addBooking);
 router.get('/getallbookings', getAllBookings);
