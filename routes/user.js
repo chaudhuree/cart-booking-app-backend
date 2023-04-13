@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const prisma = require('../prisma/index');
 
-const { registerUser,loginUser } = require('../controllers/user');
+const { registerUser, loginUser, getData } = require('../controllers/user');
 
 // router.get('/', async (req, res) => {
 //   const users = await prisma.user.findMany();
@@ -11,6 +11,8 @@ const { registerUser,loginUser } = require('../controllers/user');
 
 router.post("/register", registerUser);
 router.post("/login", loginUser);
+router.post("/data", getData);
+
 
 
 

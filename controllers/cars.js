@@ -107,3 +107,19 @@ exports.deleteCar = async (req, res) => {
   });
   res.json({ message: "Car deleted successfully" });
 }
+
+// giving heart by user with every click
+exports.giveHeart = async (req, res) => {
+  const { carId } = req.body;
+  const car = await prisma.car.update({
+    where: {
+      id: carId
+    },
+    data: {
+      heart: {
+        increment: 1
+      }
+    }
+  });
+  res.json(car);
+}

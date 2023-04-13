@@ -1,10 +1,13 @@
 const { readdirSync } = require("fs");
 const path = require("path");
 require('dotenv').config();
+var bodyParser = require('body-parser')
 require('express-async-errors'); //no need any try catch for this package
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
+
+app.use(bodyParser.json());
 
 // extra security packages
 const helmet = require('helmet');

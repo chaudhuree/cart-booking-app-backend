@@ -14,7 +14,7 @@ model User {
   id        String    @id @default(auto()) @map("_id") @db.ObjectId
   username  String    @unique
   password  String
-  role      Int       @default(0)
+  role      Int       @default(1)
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   Booking   Booking[]
@@ -27,6 +27,7 @@ model Car {
   capacity        Int
   fuelType        String
   rentPerHour     Int
+  heart           Int              @default(0)
   bookedTimeSlots BookedTimeSlot[] @relation("BookedTimeSlot")
   createdAt       DateTime         @default(now())
   updatedAt       DateTime         @updatedAt
